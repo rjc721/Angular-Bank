@@ -11,10 +11,11 @@ import { HomeComponent } from './home/home.component'
 import { AccountComponent } from './account/account.component'
 import { ListComponent } from './account/list.component'
 import { CreateComponent } from './account/create.component'
+import { DetailsComponent } from './account/details.component'
 
 @NgModule({
   declarations: [
-    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent
+    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent, DetailsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule
