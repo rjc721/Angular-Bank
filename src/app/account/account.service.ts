@@ -24,10 +24,23 @@ export class AccountService {
     return Promise.resolve(this._accounts)
   }
 
+  public getById(accountId: number): Promise<Account> {
+
+    return new Promise((resolve, reject) => {
+      var foundAcc = this._accounts.find(acc => acc.id == accountId)
+
+      if (!foundAcc) {
+        reject('No account found with this id')
+      } else {
+        resolve(foundAcc)
+      }
+    })
+  }
+
   private _nextId = 3
   private _accountLimit = 3
 
-  public create(newAccount: Account) {
+  public create(newAccount: Account): Promise<Account> {
 
     return new Promise((resolve, reject) => {
 
@@ -48,13 +61,16 @@ export class AccountService {
 
   public remove(index: number) {
 
-    if (this._logger) {
-      this._logger.log('Account deleted: ' + this._accounts[index].title)
-    }
+    return new Promise((resolve, reject) => {
 
-    this._accounts.splice(index, 1)
+      if (this._logger) {
+        this._logger.log('Account deleted: ' + this._accounts[index].title)
+      }
+
+      resolve(this._accounts.splice(index, 1))
+    })
+
   }
-
 }
 
 export let ACCOUNT_SERVICE_PROVIDERS: Array<any> = [AccountService, LoggerService]

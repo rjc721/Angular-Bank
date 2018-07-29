@@ -2,3 +2,9 @@
 <h3>This is the home component</h3>
 
 <h3><a routerLink="/accounts" routerLinkActive="active">Look at your accounts.</a></h3>
+<a routerLink="/accounts/list" routerLinkActive="active">Create new account</a>
+
+<!-- Putting the '/' in front of accounts/list in router link of
+      second link above is important in that it uses this as the
+      absolute address, whereas 'accounts/list' would try to append
+      onto the end of the address -->
