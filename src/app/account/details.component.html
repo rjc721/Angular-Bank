@@ -7,8 +7,9 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 detail-label">Account</div>
-      <div class="col-md-10 detail-data">{{_account.title}}</div>
+      <div class="col-md-10 detail-data">{{_account.title}}
         <small *ngIf="_account.description">- {{_account.description}}</small>
+      </div>
     </div>
 
 
@@ -28,7 +29,7 @@
         </div>
 
         <div *ngIf="_trans.length > 0" class="table-responsive">
-          <table>
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th>#</th>
@@ -43,13 +44,15 @@
                 <td>{{t.id}}</td>
                 <td>{{t.description}}</td>
                 <td [ngClass]="{'text-success':t.value>0, 'text-danger':t.value<0}">
-                {{t.value}}</td>
-                <td>{{t.date | date: 'd MMM'}}</td>
-                <td> <span *ngFor="let tag of t.tags" class="label label-primary">{{tag}}</span></td>
+                {{t.value | currency: 'EUR'}}</td>
+                <td>{{t.date | date: 'EEE, MMMM d'}}</td>
+                <td> <span *ngFor="let tag of t.tags" class="label label-primary tag">{{tag}}</span> </td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <button [routerLink]="['/transactions', 'create', {account:_account.id}]" class="btn btn-primary">Add Transaction</button>
 
       </div>
     </div>

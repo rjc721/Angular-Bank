@@ -10,7 +10,7 @@ export class TransactionService {
       id: "1",
       value: 50,
       description: "Something",
-      date: new Date(),
+      date: new Date(2018, 6, 21, 8, 32, 0),
       tags: ["something"],
       accountId: 1
     },
@@ -18,13 +18,13 @@ export class TransactionService {
       id: "2",
       value: 121.31,
       description: "Something else",
-      date: new Date(),
+      date: new Date(1999, 8, 24, 8, 33, 0),
       tags: ["something"],
       accountId: 1
     },
     {
       id: "12",
-      value: -507,
+      value: -507.348,
       description: "Something further",
       date: new Date(),
       tags: ["bills", "electricity"],

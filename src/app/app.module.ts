@@ -12,10 +12,12 @@ import { AccountComponent } from './account/account.component'
 import { ListComponent } from './account/list.component'
 import { CreateComponent } from './account/create.component'
 import { DetailsComponent } from './account/details.component'
+import { TransactionComponent } from './transaction/transaction.component'
+import { CreateComponent as TransCreateComponent } from './transaction/create.component'
 
 @NgModule({
   declarations: [
-    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent, DetailsComponent
+    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent, DetailsComponent, TransactionComponent, TransCreateComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule

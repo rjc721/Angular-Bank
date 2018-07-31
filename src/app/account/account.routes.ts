@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router'
+import { Routes } from '@angular/router'
 import { AccountComponent } from './account.component'
 import { CreateComponent } from './create.component'
 import { ListComponent } from './list.component'
