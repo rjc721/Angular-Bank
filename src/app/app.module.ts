@@ -14,10 +14,11 @@ import { CreateComponent } from './account/create.component'
 import { DetailsComponent } from './account/details.component'
 import { TransactionComponent } from './transaction/transaction.component'
 import { CreateComponent as TransCreateComponent } from './transaction/create.component'
+import { SearchTransactionPipe } from './transaction/search_transactions'
 
 @NgModule({
   declarations: [
-    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent, DetailsComponent, TransactionComponent, TransCreateComponent
+    AppComponent, AccountsList, AccountForm, HomeComponent, AccountComponent, ListComponent, CreateComponent, DetailsComponent, TransactionComponent, TransCreateComponent, SearchTransactionPipe
   ],
   imports: [
     BrowserModule, HttpClientModule, FormsModule, AppRoutingModule

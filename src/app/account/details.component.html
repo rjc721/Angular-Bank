@@ -2,21 +2,21 @@
   <p class="alert alert-danger">{{_error}}</p>
 </div>
 
-<div class="row details" *ngIf="_account">
+<div class="row details" [hidden]="!(isObject(_account | async))">
 
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-2 detail-label">Account</div>
-      <div class="col-md-10 detail-data">{{_account.title}}
-        <small *ngIf="_account.description">- {{_account.description}}</small>
+      <div class="col-md-10 detail-data">{{(_account | async)?.title}}
+        <small *ngIf="(_account | async)?.description">- {{(_account | async)?.description}}</small>
       </div>
     </div>
 
 
     <div class="row">
       <div class="col-md-2 detail-label">Balance</div>
-      <div class="col-md-10 detail-data" [ngClass]="{'text-success':_account.balance>0, 'text-danger':_account.balance<0}">
-        {{_account.balance}}
+      <div class="col-md-10 detail-data" [ngClass]="{'text-success':(_account | async)?.balance>0, 'text-danger':(_account | async)?.balance<0}">
+        {{((_account | async)?.balance | currency)}}
       </div>
     </div>
 
@@ -28,7 +28,15 @@
           <p class="alert alert-info">There are no transactions to show.</p>
         </div>
 
-        <div *ngIf="_trans.length > 0" class="table-responsive">
+        <div *ngIf="_trans?.length > 0" class="table-responsive">
+          <form class="form-inline pull-right">
+            <div class="form-group">
+              <label for="searchTag">Search by tag</label>
+              <input type="text" class="form-control" id="searchTag" placeholder="tag..." #tag>
+            </div>
+            <button type="submit" class="btn btn-default" (click)="searchByTag(tag)">Search</button>
+          </form>
+
           <table class="table table-hover">
             <thead>
               <tr>
@@ -40,11 +48,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let t of _trans">
+              <tr *ngFor="let t of (_trans | searchTransactions:_tagSearchQuery)">
                 <td>{{t.id}}</td>
                 <td>{{t.description}}</td>
                 <td [ngClass]="{'text-success':t.value>0, 'text-danger':t.value<0}">
-                {{t.value | currency: 'EUR'}}</td>
+                {{t.value | currency}}</td>
                 <td>{{t.date | date: 'EEE, MMMM d'}}</td>
                 <td> <span *ngFor="let tag of t.tags" class="label label-primary tag">{{tag}}</span> </td>
               </tr>
@@ -59,3 +67,8 @@
 
   </div>
 </div>
+
+
+<!-- <div class="row">
+  <p class="alert alert-info">{{_trans | json}}</p>
+</div> -->
